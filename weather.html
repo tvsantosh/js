@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="weather.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="detail">
+        
+            <div class="search">
+                <input type="text" placeholder="enter the place" spellcheck="false" id="na">
+                <button><img src="search.png" alt="search"></button>
+                <img src="location.png" alt="" class="limg" id="get-loc">
+            </div>
+
+            <div class="error">
+                <p>Invalid place name</p>
+            </div>
+
+            <div class="weather">
+                <img src="rain.png" alt="" class="weth-icon">
+                <h1 class="temp">Loading...</h1>
+                <div class="minmax">
+                <h3 class="temp1">Loading...</h3>
+                <h3 class="temp2">Loading...</h3>
+            </div>
+                <h2 class="city">Loading...</h2>
+
+                <div class="info">
+                        <div class="col">
+                            <img src="humidity.png" alt="">
+                                <div>
+                                    <p class="humidity">Loading...</p>
+                                    <p>Humidity</p>
+                                </div>
+                        </div>
+
+                        <div class="col">
+                            <img src="wind.png" alt="">
+                                <div>
+                                    <p class="wind">Loading...km/hr</p>
+                                    <p>Wind Speed</p>
+                                </div>
+                        </div>
+                </div>
+
+
+            </div>
+        </div>
+        
+        
+    </div>
+    </div>
+   
+
+<script src="weather.js"></script>
+</body>
+</html>

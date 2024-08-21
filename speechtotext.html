@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech Synthesis and Recognition</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        textarea {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        button {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Speech Synthesis and Recognition</h1>
+
+    <textarea id="textarea" rows="10" cols="50"></textarea><br>
+    
+    <label for="rangeslider">Rate:</label>
+    <input type="range" id="rangeslider" min="0.5" max="2" value="1" step="0.1">
+    <span id="spanvalue">1</span><br>
+
+    <select id="voiceSelect"></select><br>
+
+    <button id="speak-btn">Speak</button>
+    <button id="start-btn">Start Recognition</button>
+    <button id="stop-btn">Stop Recognition</button>
+
+    <p id="abc"></p>
+
+    <script>
+        // Initialize SpeechSynthesisUtterance
+        let speech = new SpeechSynthesisUtterance();
+        const rangeslider = document.getElementById('rangeslider');
+        const spanvalue = document.getElementById('spanvalue');
+        let rangevalue = parseFloat(rangeslider.value);
+
+        function updaterange() {
+            rangevalue = parseFloat(rangeslider.value);
+            spanvalue.textContent = rangevalue;
+        }
+
+        rangeslider.addEventListener('input', updaterange);
+
+        // Initialize voice selection
+        let voices = [];
+        const voiceSelect = document.getElementById('voiceSelect');
+
+        window.speechSynthesis.onvoiceschanged = () => {
+            voices = window.speechSynthesis.getVoices();
+            speech.voice = voices[0];
+            voiceSelect.innerHTML = ''; // Clear existing options
+            voices.forEach((voice, i) => {
+                let option = new Option(voice.name, i);
+                option.style.color = 'black';
+                voiceSelect.options.add(option);
+            });
+        };
+
+        voiceSelect.addEventListener('change', () => {
+            let selectedIndex = voiceSelect.value;
+            if (voices[selectedIndex]) {
+                speech.voice = voices[selectedIndex];
+            }
+        });
+
+        document.getElementById('speak-btn').addEventListener('click', () => {
+            speech.text = document.getElementById('textarea').value;
+            speech.rate = rangevalue;
+            window.speechSynthesis.speak(speech);
+        });
+
+        // Initialize SpeechRecognition
+        var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+        var recognition = new SpeechRecognition();
+
+        // Configure recognition object
+        recognition.continuous = true; // Keep listening continuously
+        recognition.interimResults = true; // Get interim results
+
+        recognition.onstart = function () {
+            document.getElementById('abc').innerHTML = "<small>Listening, please speak...</small>";
+        };
+
+        recognition.onspeechend = function () {
+            document.getElementById('abc').innerHTML = "<small>Stopped listening, hope you are done...</small>";
+        };
+
+        recognition.onresult = function (event) {
+            let transcript = '';
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+                transcript += event.results[i][0].transcript;
+            }
+            document.getElementById('textarea').value = transcript;
+        };
+
+        document.getElementById('start-btn').addEventListener('click', () => {
+            recognition.start();
+        });
+
+        document.getElementById('stop-btn').addEventListener('click', () => {
+            recognition.stop();
+        });
+    </script>
+</body>
+</html>

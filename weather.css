@@ -1,0 +1,155 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #ffff;
+}
+.container
+{
+    background: url(earth.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    min-height: 100vh;
+
+}
+.detail
+{
+    width: 50%;
+    min-height: 100vh;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    background-color: rgba(0,0, 0, 0.5);
+    backdrop-filter: blur(30px);
+    text-align: center;
+    padding-top: 50px;
+}
+.search
+{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search input:focus
+{
+    border: blue 1px solid;
+}
+
+.search input
+{
+    width: 400px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius:10px ;
+    padding: 10px 10px;
+    font-size: 18px;
+    color: #555;
+    background: #ebfffc;
+}
+
+.search button
+{
+    border: none;
+    outline: none;
+    background: #ebfffc;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius:10px;
+    height: 40px;
+    width: 60px;
+    cursor: pointer;
+}
+.search button img
+{
+    width: 25px;
+    margin-top: 5px;
+}
+.rain-icon
+{
+  width: 170px;  
+  margin-top: 40px;
+}
+
+.weather h1
+{
+    font-size: 80px;
+    font-weight: 500;
+}
+.weather h2{
+    font-size: 40px;
+    font-weight: 400;
+    margin-top: -10px;
+}
+.info
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0px 20px;
+    margin-top: 50px;
+}
+.col
+{
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+.col img
+{
+    width: 50px;
+    height: 50px;
+    margin: 0 15px;
+}
+.humidity, .wind
+{
+    font-size: 25px;
+}
+
+.weather
+{
+    display: none;
+}
+
+.error
+{
+    display: none;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 20px;
+}
+
+.error p
+{
+    color: red;
+}
+
+
+.limg
+{
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+.anim{
+    animation: my 5s linear infinite;
+}
+
+@keyframes my {
+    0%   {transform: rotatey(0deg);}
+    100% {transform: rotatey(360deg);}
+}
+
+
+
+.minmax
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    text-decoration: underline;
+}

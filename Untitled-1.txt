@@ -1,0 +1,1 @@
+https://api.openweathermap.org/data/2.5/weather?lat=13.3619379&lon=80.1323796&appid=7cb5d7d0c5e7f4c9e6e18602a9bd5306
